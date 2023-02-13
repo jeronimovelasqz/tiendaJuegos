@@ -12,7 +12,6 @@ class Administrador_Stock:
         self.catalogo: list = ["gow1", "gow2", "gow3", "gow4"]
         self.juegos: int = 0
 
-
     def mostrar_stock(self):
         print(f"actualmente tenemos los juegos {[juego for juego in self.catalogo]}"
               f"donde tenemos {self.gow1} unidades para el gow1\n"
@@ -55,9 +54,41 @@ class Administrador_Stock:
         self.stock += cantidad
 
 
+class Tienda(Administrador_Stock):
+    def __init__(self, gow1: int = 0, gow2: int = 0, gow3: int = 0, gow4: int = 0, horas: int = 0, cantidad_juegos_alquilar: int = 0):
+        super().__init__(gow1, gow2, gow3, gow4)
 
-eso = Administrador_Stock(1,2,3,4)
-eso.mostrar_stock()
-eso.agregar_juego()
-eso.mostrar_stock()
+        self.horas = horas
+        self.cantidad_juegos_alquilar = cantidad_juegos_alquilar
+
+    def rentar_juego(self):
+        self.cantidad_juegos_alquilar = int(input("agregue la cantidad de juegos que desea alquilar"))
+
+        if self.cantidad_juegos_alquilar <= 0:
+            print("agregue una cantidad de juegos valida por favor")
+            return None
+
+        elif self.cantidad_juegos_alquilar > self.stock:
+            print(f"lo siento , los juegos que quieres exceden la cantidad que tenemos , nuestro stock y catalogo "
+                  f"actualmente tenemos los juegos {[juego for juego in self.catalogo]}\n"
+                  f"donde tenemos {self.gow1} unidades para el gow1\n"
+                  f"{self.gow2} unidades para el gow2\n"
+                  f"{self.gow3} unidades para el gow3\n"
+                  f"y {self.gow4} unidades para el gow4")
+
+        else:
+            now = datetime.datetime.now()
+            print("usted alquilo {} juego(s) hoy a las {} horas.".format(self.cantidad_juegos_alquilar, now.hour))
+            print("se le cobrara 10 dolares por cada dia de uso.")
+            print("espero que disfrute nuestro servicio.")
+
+            self.stock -= self.cantidad_juegos_alquilar
+            return now
+
+
+
+
+
+
+
 
