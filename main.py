@@ -14,7 +14,11 @@ class Administrador_Stock:
 
 
     def mostrar_stock(self):
-        print(f"actualmente tenemos los juegos {[juego for juego in self.catalogo]}")
+        print(f"actualmente tenemos los juegos {[juego for juego in self.catalogo]}"
+              f"donde tenemos {self.gow1} unidades para el gow1\n"
+              f"{self.gow2} unidades para el gow2\n"
+              f"{self.gow3} unidades para el gow3\n"
+              f"y {self.gow4} unidades para el gow4")
 
     def modificar_stock(self):
         modificar = int(input("usted esta a punto de modificar el catalogo de juegos,\n"
@@ -41,10 +45,10 @@ class Administrador_Stock:
             return None
 
     def agregar_juego(self):
-        print("usted esta a punto de agregar mas juegos al catalogo de juegos actuales,\n")
+        print("usted esta a punto de agregar mas juegos al catalogo de juegos actuales: \n")
 
-        juego = str(input("copie el juego  que desea agregar a la tienda"))
-        cantidad = int(input(f"copie la cantidad de unidades de {juego}"))
+        juego = str(input("copie el nombre del juego  que desea agregar a la tienda: "))
+        cantidad = int(input(f"copie la cantidad de unidades de {juego}: "))
 
         setattr(self, juego, cantidad)
         self.catalogo.append(juego)
@@ -52,6 +56,8 @@ class Administrador_Stock:
 
 
 
-eso = Administrador_Stock()
-
+eso = Administrador_Stock(1,2,3,4)
+eso.mostrar_stock()
+eso.agregar_juego()
+eso.mostrar_stock()
 
